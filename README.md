@@ -30,7 +30,16 @@ A Django-based system for managing clients and health programs with REST API sup
 
 ## 🎥 Demo Video
 
+You can view project's demo from the link below:
+
 [![Demo Video](https://img.shields.io/badge/Demo-Video-blue)](https://drive.google.com/file/d/1kaZ4FZMoKxcZTHbJuVFSG2GfuLU4hFQU/view?usp=sharing)
+
+## 📄 Presentation
+
+You can view or download the presentation from the link below:
+
+[Download Health Information System Slides](https://github.com/Doris-Mwito5/health-information/raw/main/Health%20Information%20System%20Slides.pptx)
+
 
 ## 🛠️ Installation
 
