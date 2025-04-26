@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title%}
+<title>Login - HealthTrack</title>
+{% endblock title%}
+
+{% block content %}
+
+<div class="container">
+</br>
+    <h2 class="text-primary">Login On HealthTrack</h2>
+    {% for message in messages  %}
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+    {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+
+            </button>
+  </div>
+
+{% endfor %}
+  <form method="POST" class="mt-5 col-6">
+       {% csrf_token %}
+
+       {{ form|crispy }}
+  <button class="btn btn-primary mb-5" type="submit">Login</button>  
+  </form> 
+  </div>
+{% endblock content %}

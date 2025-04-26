@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Hero Section -->
+    <div class="row align-items-center mb-5">
+        <div class="col-lg-6">
+            <h1 class="display-4 fw-bold text-primary mb-4">About HealthTrack</h1>
+            <p class="lead text-muted">
+                Transforming healthcare through innovative technology and compassionate service.
+            </p>
+            <div class="d-flex gap-3 mt-4">
+                <a href="#our-team" class="btn btn-primary px-4 py-2">Meet Our Team</a>
+                <a href="{% url 'contact' %}" class="btn btn-outline-primary px-4 py-2">Contact Us</a>
+            </div>
+        </div>
+        <!-- <div class="col-lg-6">
+            <img src="{% static 'images/about-hero.jpg' %}" alt="Healthcare professionals" class="img-fluid rounded shadow">
+        </div> -->
+    </div>
+
+    <!-- Mission & Vision -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3">
+                            <i class="fas fa-bullseye text-primary fs-4"></i>
+                        </div>
+                        <h3 class="h4 mb-0">Our Mission</h3>
+                    </div>
+                    <p class="mb-0">
+                        To empower individuals and communities to achieve optimal health through accessible, 
+                        patient-centered care, innovative technology, and evidence-based practices that 
+                        prioritize prevention and holistic well-being.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3">
+                            <i class="fas fa-eye text-primary fs-4"></i>
+                        </div>
+                        <h3 class="h4 mb-0">Our Vision</h3>
+                    </div>
+                    <p class="mb-0">
+                        To be the leading digital healthcare platform that bridges gaps in medical access, 
+                        delivering personalized, equitable care that transforms lives and builds healthier 
+                        communities worldwide.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Our Story -->
+    <section class="mb-5">
+        <h2 class="fw-bold mb-4 text-center">Our Story</h2>
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="card border-0 h-100 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                            <i class="fas fa-calendar-day text-primary fs-2"></i>
+                        </div>
+                        <h3 class="h5">Founded in 2023</h3>
+                        <p>
+                            Born from a passion to revolutionize healthcare access through technology.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card border-0 h-100 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                            <i class="fas fa-users text-primary fs-2"></i>
+                        </div>
+                        <h3 class="h5">10,000+ Patients</h3>
+                        <p>
+                            Trusted by a growing community of patients and healthcare providers.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card border-0 h-100 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                            <i class="fas fa-map-marker-alt text-primary fs-2"></i>
+                        </div>
+                        <h3 class="h5">Nationwide Reach</h3>
+                        <p>
+                            Serving communities across the country with telemedicine and local clinics.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="mb-5">
+        <h2 class="fw-bold mb-4 text-center">Our Core Values</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card border-0 h-100 shadow-sm">
+                    <div class="card-body p-4">
+                        <h3 class="h5 text-primary">
+                            <i class="fas fa-heart me-2"></i> Compassion
+                        </h3>
+                        <p>
+                            We treat every patient with empathy, dignity, and respect, understanding 
+                            that health is deeply personal.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 h-100 shadow-sm">
+                    <div class="card-body p-4">
+                        <h3 class="h5 text-primary">
+                            <i class="fas fa-lightbulb me-2"></i> Innovation
+                        </h3>
+                        <p>
+                            We continuously seek new ways to improve healthcare delivery through 
+                            technology and creative solutions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 h-100 shadow-sm">
+                    <div class="card-body p-4">
+                        <h3 class="h5 text-primary">
+                            <i class="fas fa-shield-alt me-2"></i> Integrity
+                        </h3>
+                        <p>
+                            We uphold the highest ethical standards, ensuring transparency and 
+                            trust in all our interactions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team -->
+    <section id="our-team" class="mb-5">
+        <h2 class="fw-bold mb-4 text-center">Meet Our Leadership Team</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card border-0 h-100 shadow-sm">
+                    <img src="{% static 'images/team1.jpg' %}" class="card-img-top" alt="Dr. Sarah Johnson">
+                    <div class="card-body text-center">
+                        <h3 class="h5 mb-1">Dr. Sarah Johnson</h3>
+                        <p class="text-muted small">Chief Medical Officer</p>
+                        <p class="small">
+                            Board-certified physician with 15 years of clinical experience and 
+                            a passion for preventive care.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 h-100 shadow-sm">
+                    <img src="{% static 'images/team2.jpg' %}" class="card-img-top" alt="Michael Chen">
+                    <div class="card-body text-center">
+                        <h3 class="h5 mb-1">Michael Chen</h3>
+                        <p class="text-muted small">CEO & Founder</p>
+                        <p class="small">
+                            Technology entrepreneur dedicated to making healthcare accessible 
+                            to underserved communities.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 h-100 shadow-sm">
+                    <img src="{% static 'images/team3.jpg' %}" class="card-img-top" alt="Dr. Amina Diallo">
+                    <div class="card-body text-center">
+                        <h3 class="h5 mb-1">Dr. Amina Diallo</h3>
+                        <p class="text-muted small">Director of Patient Experience</p>
+                        <p class="small">
+                            Specialist in patient-centered care models and health equity initiatives.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <div class="bg-primary bg-opacity-10 rounded-3 p-5 text-center">
+        <h2 class="fw-bold mb-3">Ready to Experience Better Healthcare?</h2>
+        <p class="lead mb-4">
+            Join thousands of patients who trust us with their health journey.
+        </p>
+        <div class="d-flex justify-content-center gap-3">
+            {% if user.is_authenticated %}
+                <a href="{% url 'dashboard' %}" class="btn btn-primary px-4 py-2">
+                    Go to Dashboard
+                </a>
+            {% else %}
+                <a href="{% url 'register' %}" class="btn btn-primary px-4 py-2">
+                    Create Account
+                </a>
+                <a href="{% url 'login' %}" class="btn btn-outline-primary px-4 py-2">
+                    Login
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

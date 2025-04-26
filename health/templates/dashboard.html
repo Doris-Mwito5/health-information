@@ -1,0 +1,389 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-0">
+    <!-- Dashboard Header -->
+    <div class="dashboard-header bg-primary text-white py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="h2 mb-0">Welcome back, {{ request.user.get_full_name|default:request.user.username }}</h1>
+                    <p class="mb-0">Last login: {{ request.user.last_login|date:"F j, Y g:i a" }}</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="dropdown">
+                        <button class="btn btn-light dropdown-toggle" type="button" id="dashboardMenu" data-bs-toggle="dropdown">
+                            Quick Actions
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="{% url 'client_registeration' %}">Register New Client</a></li>
+                            <li><a class="dropdown-item" href="{% url 'program_create' %}">Create Health Program</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Generate Reports</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard Content -->
+    <div class="container py-4">
+        <div class="row g-4">
+            <!-- Left Sidebar -->
+            <div class="col-lg-3">
+                <!-- User Profile Card -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body text-center">
+                        <div class="position-relative d-inline-block mb-3">
+                            <img src="{% static 'images/avatar-default.png' %}" class="rounded-circle" width="100" alt="User Avatar">
+                            <span class="position-absolute bottom-0 end-0 bg-success rounded-circle p-1 border border-2 border-white">
+                                <span class="visually-hidden">Online</span>
+                            </span>
+                        </div>
+                        <h3 class="h5 mb-1">{{ request.user.get_full_name|default:request.user.username }}</h3>
+                        <p class="text-muted small mb-2">{{ request.user.groups.first|default:"System User" }}</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="#" class="btn btn-sm btn-outline-primary">Profile</a>
+                            <a href="{% url 'logout' %}" class="btn btn-sm btn-outline-danger">Logout</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h4 class="h6 mb-3 text-uppercase fw-bold text-muted">Today's Overview</h4>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>New Clients</span>
+                                <span class="fw-bold">12</span>
+                            </div>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>Program Enrollments</span>
+                                <span class="fw-bold">24</span>
+                            </div>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>Follow-ups</span>
+                                <span class="fw-bold">8</span>
+                            </div>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 45%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h4 class="h6 mb-3 text-uppercase fw-bold text-muted">Quick Links</h4>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center" href="{% url 'client_list' %}">
+                                    <i class="fas fa-users me-2 text-primary"></i>
+                                    All Clients
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center" href="{% url 'program_list' %}">
+                                    <i class="fas fa-project-diagram me-2 text-primary"></i>
+                                    Health Programs
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center" href="#">
+                                    <i class="fas fa-calendar-check me-2 text-primary"></i>
+                                    Appointments
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center" href="#">
+                                    <i class="fas fa-chart-line me-2 text-primary"></i>
+                                    Analytics
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center" href="{% url 'contact' %}">
+                                    <i class="fas fa-headset me-2 text-primary"></i>
+                                    Support
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="col-lg-9">
+                <!-- Alerts and Notifications -->
+                <div class="alert alert-warning alert-dismissible fade show mb-4">
+                    <strong>System Maintenance</strong> - Scheduled for Saturday, 10:00 PM to 2:00 AM
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+
+                <!-- Dashboard Widgets -->
+                <div class="row g-4 mb-4">
+                    <!-- Clients Summary -->
+                    <div class="col-md-6">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h2 class="h5 mb-0">Client Management</h2>
+                                    <span class="badge bg-primary rounded-pill">42 Active</span>
+                                </div>
+                                <div class="mb-4">
+                                    <canvas id="clientEnrollmentChart" height="200"></canvas>
+                                </div>
+                                <div class="d-grid">
+                                    <a href="{% url 'client_list' %}" class="btn btn-outline-primary">View All Clients</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Programs Summary -->
+                    <div class="col-md-6">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h2 class="h5 mb-0">Health Programs</h2>
+                                    <span class="badge bg-success rounded-pill">8 Active</span>
+                                </div>
+                                <div class="mb-4">
+                                    <canvas id="programDistributionChart" height="200"></canvas>
+                                </div>
+                                <div class="d-grid">
+                                    <a href="{% url 'program_list' %}" class="btn btn-outline-success">Manage Programs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-white border-bottom-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h2 class="h5 mb-0">Recent Activity</h2>
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    Last 7 Days
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                    <li><a class="dropdown-item" href="#">Last 7 Days</a></li>
+                                    <li><a class="dropdown-item" href="#">Last 30 Days</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item border-0 py-3">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <div class="bg-primary bg-opacity-10 p-2 rounded-circle">
+                                            <i class="fas fa-user-plus text-primary"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <div class="d-flex justify-content-between">
+                                            <h6 class="mb-1">New Client Registered</h6>
+                                            <small class="text-muted">10 min ago</small>
+                                        </div>
+                                        <p class="mb-0 small">John Doe enrolled in the Malaria Prevention program</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item border-0 py-3">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <div class="bg-info bg-opacity-10 p-2 rounded-circle">
+                                            <i class="fas fa-stethoscope text-info"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <div class="d-flex justify-content-between">
+                                            <h6 class="mb-1">Follow-up Completed</h6>
+                                            <small class="text-muted">1 hour ago</small>
+                                        </div>
+                                        <p class="mb-0 small">Sarah Johnson completed her TB treatment follow-up</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item border-0 py-3">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <div class="bg-warning bg-opacity-10 p-2 rounded-circle">
+                                            <i class="fas fa-exclamation-triangle text-warning"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <div class="d-flex justify-content-between">
+                                            <h6 class="mb-1">Missed Appointment</h6>
+                                            <small class="text-muted">3 hours ago</small>
+                                        </div>
+                                        <p class="mb-0 small">Michael Chen missed his scheduled HIV counseling session</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white border-top-0">
+                        <a href="#" class="btn btn-sm btn-outline-primary">View All Activity</a>
+                    </div>
+                </div>
+
+                <!-- Upcoming Appointments -->
+                <div class="card shadow-sm">
+                    <div class="card-header bg-white border-bottom-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h2 class="h5 mb-0">Upcoming Appointments</h2>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Schedule New</a>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Client</th>
+                                        <th>Program</th>
+                                        <th>Date & Time</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="{% static 'images/avatar1.jpg' %}" class="rounded-circle me-2" width="30" height="30" alt="">
+                                                <span>John Smith</span>
+                                            </div>
+                                        </td>
+                                        <td>HIV Treatment</td>
+                                        <td>Today, 2:00 PM</td>
+                                        <td><span class="badge bg-success">Confirmed</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary">Details</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="{% static 'images/avatar2.jpg' %}" class="rounded-circle me-2" width="30" height="30" alt="">
+                                                <span>Maria Garcia</span>
+                                            </div>
+                                        </td>
+                                        <td>TB Program</td>
+                                        <td>Tomorrow, 10:30 AM</td>
+                                        <td><span class="badge bg-warning">Pending</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary">Details</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="{% static 'images/avatar3.jpg' %}" class="rounded-circle me-2" width="30" height="30" alt="">
+                                                <span>David Kim</span>
+                                            </div>
+                                        </td>
+                                        <td>Malaria Prevention</td>
+                                        <td>Tomorrow, 3:15 PM</td>
+                                        <td><span class="badge bg-success">Confirmed</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary">Details</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Chart.js for dashboard visualizations -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Client Enrollment Chart
+    const clientCtx = document.getElementById('clientEnrollmentChart').getContext('2d');
+    const clientChart = new Chart(clientCtx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'New Clients',
+                data: [12, 19, 15, 27, 22, 31],
+                borderColor: '#0d6efd',
+                backgroundColor: 'rgba(13, 110, 253, 0.1)',
+                tension: 0.3,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Program Distribution Chart
+    const programCtx = document.getElementById('programDistributionChart').getContext('2d');
+    const programChart = new Chart(programCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['HIV', 'TB', 'Malaria', 'Diabetes', 'Other'],
+            datasets: [{
+                data: [35, 25, 20, 15, 5],
+                backgroundColor: [
+                    '#0d6efd',
+                    '#20c997',
+                    '#fd7e14',
+                    '#6f42c1',
+                    '#d63384'
+                ],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            },
+            cutout: '70%'
+        }
+    });
+</script>
+{% endblock %}

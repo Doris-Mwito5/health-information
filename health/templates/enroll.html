@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title">
+                <i class="bi bi-clipboard-plus me-2"></i>
+                Enroll {{ client.first_name }} in Programs
+            </h2>
+            
+            <form method="POST">
+                {% csrf_token %}
+                
+                <div class="mb-3">
+                    <label class="form-label">Available Programs*</label>
+                    <div class="list-group">
+                        {% for program in form.programs %}
+                        <div class="list-group-item">
+                            <div class="form-check">
+                                {{ program.tag }}
+                                <label class="form-check-label" for="{{ program.id_for_label }}">
+                                    {{ program.choice_label }}
+                                </label>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="alert alert-info">
+                            This client is already enrolled in all available programs
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Notes (applies to all selected programs)</label>
+                    {{ form.notes }}
+                </div>
+                
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'client_detail' client.id %}" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left me-1"></i> Back
+                    </a>
+                    <button type="submit" class="btn btn-primary" {% if not form.programs.field.queryset.exists %}disabled{% endif %}>
+                        <i class="bi bi-save me-1"></i> Enroll
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

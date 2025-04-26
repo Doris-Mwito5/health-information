@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+<title>Welcome to HealthMate</title>
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row text-center">
+    <div class="col-lg-4">
+      <img src="{% static "images/doctor.jpg" %}" alt="Doctor" class="rounded-4 shadow p-2 mb-4" width="360" height="240">
+      <p class="h5 text-muted">Access professional healthcare tools.</p>
+    </div>
+    <div class="col-lg-4">
+      <img src="{% static "images/health_record.jpg" %}" alt="Health Records" class="rounded-4 shadow p-2 mb-4" width="360" height="240">
+      <p class="h5 text-muted">Keep your medical records organized.</p>
+    </div>
+    <div class="col-lg-4">
+      <img src="{% static "images/health_tool.jpg" %}" alt="Health Tools" class="rounded-4 shadow p-2 mb-4" width="360" height="240">
+      <p class="h5 text-muted">Manage your appointments easily.</p>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-md-10 offset-md-1 text-center">
+      <h1 class="text-success fw-bold">Your Personal Health Companion</h1>
+      <h4 class="text-secondary mt-3">Track records, schedule appointments, and stay healthy—anytime, anywhere.</h4>
+      <a href="{% url 'register' %}">
+        <button type="button" class="btn btn-outline-success btn-lg shadow p-3 mt-4">
+          Get Started with Your Health Journal
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock content %}

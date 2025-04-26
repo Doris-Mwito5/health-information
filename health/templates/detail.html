@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <!-- Profile Header -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 class="mb-0">
+                    <i class="bi bi-person-badge me-2"></i>
+                    {{ client.first_name }} {{ client.last_name }}
+                </h3>
+                <div class="btn-group">
+                    <a href="{% url 'enroll_client' client.id %}" 
+                       class="btn btn-light btn-sm {% if not available_programs %}disabled{% endif %}"
+                       title="Enroll in new programs">
+                        <i class="bi bi-clipboard-plus me-1"></i> Enroll
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-body">
+            <div class="row">
+                <!-- Personal Info Column -->
+                <div class="col-md-6 border-end">
+                    <h5><i class="bi bi-file-person me-2"></i>Personal Information</h5>
+                    <dl class="row">
+                        <dt class="col-sm-4">Date of Birth</dt>
+                        <dd class="col-sm-8">{{ client.date_of_birth|date:"F j, Y" }} ({{ client.age }} years)</dd>
+                        
+                        <dt class="col-sm-4">Gender</dt>
+                        <dd class="col-sm-8">{{ client.get_gender_display }}</dd>
+                    </dl>
+                </div>
+                
+                <!-- Contact Info Column -->
+                <div class="col-md-6">
+                    <h5><i class="bi bi-telephone me-2"></i>Contact Information</h5>
+                    <dl class="row">
+                        <dt class="col-sm-4">Phone</dt>
+                        <dd class="col-sm-8">{{ client.contact_number }}</dd>
+                        
+                        <dt class="col-sm-4">Address</dt>
+                        <dd class="col-sm-8">{{ client.address|linebreaksbr }}</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Program Enrollments Section -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-secondary text-white">
+            <h3 class="mb-0">
+                <i class="bi bi-clipboard2-pulse me-2"></i>
+                Program Enrollments
+            </h3>
+        </div>
+        
+        <div class="card-body">
+            {% if enrollments %}
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Program</th>
+                            <th>Enrolled On</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for enrollment in enrollments %}
+                        <tr>
+                            <td>
+                                <strong>{{ enrollment.program.name }}</strong>
+                                <div class="text-muted small">{{ enrollment.program.description }}</div>
+                            </td>
+                            <td>{{ enrollment.enrollment_date|date:"M d, Y" }}</td>
+                            <td><span class="badge bg-success">Active</span></td>
+                            <td>
+                                <form action="{% url 'remove_enrollment' enrollment.id %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                        <i class="bi bi-trash"></i> Remove
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle me-2"></i>
+                This client is not currently enrolled in any programs.
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

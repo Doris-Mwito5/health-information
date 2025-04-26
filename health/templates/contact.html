@@ -1,0 +1,243 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="bg-primary bg-opacity-10 py-5">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold text-primary">Get in Touch</h1>
+        <p class="lead">We'd love to hear from you! Send us a message and we'll respond as soon as possible.</p>
+    </div>
+</div>
+
+<!-- Contact Section -->
+<div class="container my-5">
+    <div class="row g-5">
+        <!-- Contact Form -->
+        <div class="col-lg-7">
+            <div class="card border-0 shadow-lg animate__animated animate__fadeInUp">
+                <div class="card-body p-4 p-md-5">
+                    <h3 class="text-center mb-4"><i class="fas fa-paper-plane me-2 text-primary"></i> Send Us a Message</h3>
+                    
+                    <form id="contactForm" method="POST" novalidate>
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    {{ form.name|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    {{ form.email|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    {{ form.subject|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    {{ form.message|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-lg py-3">
+                                        <span id="submitText">Send Message</span>
+                                        <span id="spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-lg-5">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-4 p-md-5">
+                    <h3 class="text-center mb-4"><i class="fas fa-info-circle me-2 text-primary"></i> Contact Information</h3>
+                    
+                    <div class="d-flex mb-4">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3 flex-shrink-0">
+                            <i class="fas fa-phone text-primary fs-4"></i>
+                        </div>
+                        <div>
+                            <h4 class="h5 mb-1">Phone Support</h4>
+                            <p class="mb-0">+123 456 7890</p>
+                            <small class="text-muted">24/7 Emergency Support</small>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mb-4">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3 flex-shrink-0">
+                            <i class="fas fa-envelope text-primary fs-4"></i>
+                        </div>
+                        <div>
+                            <h4 class="h5 mb-1">Email Us</h4>
+                            <p class="mb-0">support@healthtrack.com</p>
+                            <small class="text-muted">Response within 24 hours</small>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mb-4">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3 flex-shrink-0">
+                            <i class="fas fa-map-marker-alt text-primary fs-4"></i>
+                        </div>
+                        <div>
+                            <h4 class="h5 mb-1">Our Location</h4>
+                            <p class="mb-0">123 Health Street</p>
+                            <p class="mb-0">Cityville, Country</p>
+                            <small class="text-muted">Mon-Fri: 8:00 AM - 5:00 PM</small>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <h4 class="h5 text-center mb-3"><i class="fas fa-share-alt me-2 text-primary"></i> Follow Us</h4>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="#" class="text-primary fs-4"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-primary fs-4"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-primary fs-4"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-primary fs-4"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Map Section -->
+<div class="container mb-5">
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-0">
+            <div class="ratio ratio-16x9">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2152091263277!2d-73.98784492423918!3d40.74844097138996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1685480422535!5m2!1sen!2sus" 
+                        style="border:0;" allowfullscreen="" loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Notification -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
+    <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-primary text-white">
+            <strong class="me-auto" id="toast-title">Notification</strong>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="toast-message">
+            Message sent successfully!
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
+
+<!-- AJAX Form Handling -->
+<script>
+$(document).ready(function() {
+    // Initialize toast
+    const toastEl = document.getElementById('toast');
+    const toast = new bootstrap.Toast(toastEl);
+    
+    // Form submission handler
+    $('#contactForm').on('submit', function(e) {
+        e.preventDefault();
+        
+        // Show loading state
+        const submitBtn = $(this).find('button[type="submit"]');
+        const submitText = $('#submitText');
+        const spinner = $('#spinner');
+        
+        submitText.text('Sending...');
+        spinner.removeClass('d-none');
+        submitBtn.prop('disabled', true);
+        
+        // AJAX request
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'contact' %}",
+            data: $(this).serialize(),
+            headers: { 'X-CSRFToken': '{{ csrf_token }}' },
+            success: function(response) {
+                // Show success toast
+                $('#toast-title').text('Success');
+                $('#toast').removeClass('bg-danger').addClass('bg-success');
+                $('#toast-message').html('<i class="fas fa-check-circle me-2"></i>' + response.message);
+                toast.show();
+                
+                // Reset form
+                $('#contactForm')[0].reset();
+            },
+            error: function(xhr) {
+                // Show error toast
+                $('#toast-title').text('Error');
+                $('#toast').removeClass('bg-success').addClass('bg-danger');
+                
+                let message = "Something went wrong. Please try again.";
+                if (xhr.responseJSON && xhr.responseJSON.error) {
+                    message = xhr.responseJSON.error;
+                }
+                
+                $('#toast-message').html('<i class="fas fa-exclamation-circle me-2"></i>' + message);
+                toast.show();
+            },
+            complete: function() {
+                // Reset button state
+                submitText.text('Send Message');
+                spinner.addClass('d-none');
+                submitBtn.prop('disabled', false);
+            }
+        });
+    });
+    
+    // Animate form fields on focus
+    $('.form-control').focus(function() {
+        $(this).parent().addClass('focused');
+    }).blur(function() {
+        if ($(this).val() === '') {
+            $(this).parent().removeClass('focused');
+        }
+    });
+});
+</script>
+
+<!-- Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<!-- Custom CSS -->
+<style>
+.form-floating label {
+    transition: all 0.2s ease;
+}
+.form-floating.focused label {
+    transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+    color: #0d6efd;
+}
+.toast {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+#contactForm .form-control {
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+#contactForm .form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    border-color: #86b7fe;
+}
+</style>
+{% endblock %}
