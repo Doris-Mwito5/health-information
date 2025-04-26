@@ -28,6 +28,9 @@ A Django-based system for managing clients and health programs with REST API sup
 5. **REST API**
    - Client/program endpoints
 
+## 🎥 Demo Video
+
+[![Demo Video](https://img.shields.io/badge/Demo-Video-blue)](https://drive.google.com/file/d/1kaZ4FZMoKxcZTHbJuVFSG2GfuLU4hFQU/view?usp=sharing)
 
 ## 🛠️ Installation
 
@@ -46,11 +49,5 @@ pip install -r requirements.txt
 
 # Configure and run
 python manage.py migrate
-
-[![Demo Video](https://img.shields.io/badge/Demo-Video-blue)](https://drive.google.com/file/d/1kaZ4FZMoKxcZTHbJuVFSG2GfuLU4hFQU/view?usp=sharing)
 python manage.py createsuperuser
 python manage.py runserver
-
-## 📸 Demo
-
-- [Click here to watch the Demo Video](https://drive.google.com/file/d/1kaZ4FZMoKxcZTHbJuVFSG2GfuLU4hFQU/view?usp=sharing)
